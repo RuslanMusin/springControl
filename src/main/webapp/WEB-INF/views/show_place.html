@@ -4,32 +4,32 @@
 <head th:replace="head :: frag(
                     title='Registration',
                     links = ${new String[]{'css/menu.css','css/personal_page.css'}},
-                    scripts=${new String[]{'/js/jquery-3.2.1.js'}})">
+                    scripts=${new String[]{'/js/jquery-3.2.1.js','/js/tableSort.js'}})">
 </head>
 
 <body>
 
 <div id = "personal_div">
 
-    <p><span th:text="#{lang.change}"></span>:
-        <select id="locales">
-            <option value=""></option>
-            <option value="en" th:text="#{lang.en}"></option>
-            <option value="ru" th:text="#{lang.ru}"></option>
-            <option value="esp" th:text="#{lang.esp}"></option>
-        </select>
-
-    </p>
-
-    <table>
-    <th:block th:each="place : ${places}">
+    <table id="grid">
+        <thead>
         <tr>
-            <td th:text="${place.name}">A Smoke Test'</td>
-            <td th:text="${place.longitude}">A Smoke Test'</td>
-            <td th:text="${place.lat}">A Smoke Test'</td>
-            <td th:text="${place.type.getName()}">A Smoke Test'</td>
+            <th data-type="name" th:text="#{label.name}"></th>
+            <th data-type="long" th:text="#{label.longitude}"></th>
+            <th data-type="lat" th:text="#{label.lat}"></th>
+            <th data-type="type" th:text="#{label.type}"></th>
         </tr>
-    </th:block>
+        </thead>
+        <tbody>
+        <th:block th:each="place : ${places}">
+            <tr>
+                <td th:text="${place.name}">A Smoke Test'</td>
+                <td th:text="${place.longitude}">A Smoke Test'</td>
+                <td th:text="${place.lat}">A Smoke Test'</td>
+                <td th:text="${place.type.getName()}">A Smoke Test'</td>
+            </tr>
+        </th:block>
+        </tbody>
     </table>
 
 </div>

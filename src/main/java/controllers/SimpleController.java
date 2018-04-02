@@ -23,15 +23,7 @@ public class SimpleController {
     private final HttpSession session;
 
     private final DbService databaseService;
-
-    /*@Autowired
-    private UserFormValidator userValidator;
-
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(userValidator);
-    }*/
-
+    
     @Autowired
     public SimpleController(HttpSession session, DbService databaseService) {
         this.session = session;

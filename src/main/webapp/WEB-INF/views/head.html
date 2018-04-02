@@ -12,7 +12,7 @@
     </th:block>
 
     <th:block th:each="script : ${scripts}">
-        <script th:src="@{${script}}" th:if="${script != null}"></script>
+        <script th:src="@{${script}}" th:if="${script != null}" async></script>
     </th:block>
 </head>
 </html>
