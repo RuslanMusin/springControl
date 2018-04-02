@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="head :: frag(title='Registration',links = 'css/registration.css',scripts='js/common/form_reset.js')"> </head>
+
+<body>
+
+    <th:block>
+
+    <div id = "registration_div">
+
+        <div id = "registration_form">
+
+            <form th:action = "@{/add-place}" method="POST" th:object="${place}">
+
+                <p>
+                    <input type="text" th:field="*{name}"
+                           th:class="text" th:placeholder="#{label.name}"/>
+                </p>
+                <div th:if="${#fields.hasErrors('name')}">
+                    <p th:each="err : ${#fields.errors('name')}"
+                       th:text="${err}">Username error
+                    </p>
+                </div>
+
+                <p><input type="number" th:field="*{longitude}"
+                          th:class="text" th:placeholder="#{label.longitude}"
+                          value="35" min="-90" max="90" step="0.1"></p>
+
+                <div th:if="${#fields.hasErrors('longitude')}">
+                    <p th:each="err : ${#fields.errors('longitude')}"
+                       th:text="${err}">Email error
+                    </p>
+                </div>
+
+                <p><input type="number" th:field="*{lat}"
+                          th:class="text" th:placeholder="#{label.lat}"
+                          value="35" min="-180" max="180" step="0.1"></p>
+                <div th:if="${#fields.hasErrors('lat')}">
+                    <p th:each="err : ${#fields.errors('lat')}"
+                       th:text="${err}">Email error
+                    </p>
+                </div>
+
+                <p>Выберите тип :
+                    <label>
+                        <select th:field="*{typeId}">
+                            <option th:each="type : ${types}"
+                                    th:value="${type.id}"
+                                    th:text="${type.name}"></option>
+                        </select>
+                    </label></p>
+                <div th:if="${#fields.hasErrors('typeId')}">
+                    <p th:each="err : ${#fields.errors('typeId')}"
+                       th:text="${err}">Email error
+                    </p>
+                </div>
+
+                <input type="submit" value="Add"/>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    </th:block>
+
+</body>
+
+</html>
